@@ -1,0 +1,95 @@
+﻿@viewModel DiplomaDemo.DotVVM.Pages.DefaultViewModel, DiplomaDemo.DotVVM
+
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>DotVVM and MONO (WASM) sample</title>
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <dot:RequiredResource Name="mono" />
+
+</head>
+<body Validation.Enabled="false" class="page-body">
+    <img src="img/UTKO_color_RGB_EN.png" alt="FEKT logo" class="logo-img">
+
+    <h1>DotVVM & Mono (WASM) demo</h1>
+    <br>
+     <span class="span-important">PostBack counter {{value: PostBackCounter}}</span>
+    <div>
+        <h2>DotVVM</h2>
+        <div>
+            <div>
+                <dot:Button Click="{command: SayHello()}" Text="Say Hello" class="page-button" />
+                <span InnerText="{value: SayHelloText}" />
+            </div>
+            <div>
+                <dot:Button Click="{command: Parse(ParseTextInput)}" Text="Parse" class="page-button" />
+                <dot:TextBox Text="{value: ParseTextInput}" class="input-text-only" /> =>
+                <span InnerText="{value: ParseResult}" />
+            </div>
+            <div>
+                <dot:Button Click="{command: Multiply(MultiplyInputA,MultiplyInputB)}" Text="Multiply" class="page-button" />
+                <dot:TextBox Text="{value: MultiplyInputA}" Type="Number" class="input-text-only" />
+                *
+                <dot:TextBox Text="{value: MultiplyInputB}" Type="Number" class="input-text-only" />
+                =
+                <span InnerText="{value: MultiplyResult}" class="input-text-only" />
+            </div>
+        </div>
+    </div>
+    <div>
+        <h2>C# and Mono (WASM)</h2>
+        <div id="loadingMono">
+            <span InnerText="Initializing Mono runtime..." />
+        </div>
+        <div id="loadingMonContent" style="display:none;">
+            <div>
+                <dot:Button id="btn_SayHello" Text="Say Hello" class="page-button" />
+                <span id="span_SayHello" />
+            </div>
+            <div>
+                <dot:Button id="btn_Parse" Text="Parse" class="page-button" />
+                <input id="input_Parse" class="input-text-only" /> =>
+                <span id="span_ParseResult" />
+            </div>
+            <div>
+                <dot:Button id="btn_Multiply" Text="Multiply" class="page-button" />
+                <input id="input_MultiplyA" class="input-text-only" type="number" />
+                *
+                <input id="input_MultiplyB" class="input-text-only" type="number" />
+                =
+                <span id="span_MultiplyResult" class="input-text-only" />
+            </div>
+        </div>
+    </div>
+</body>
+<dot:InlineScript>
+    const getElementValue = (id) => document.getElementById(id).value;
+    const setElementInnerText = (id, value) => document.getElementById(id).innerText = value;
+    const addClickEventListener = (id, callback) => document.getElementById(id).addEventListener("click", callback);
+    const callStaticMethodWasmSample = (className, methodName, args=[]) => BINDING.call_static_method("[DiplomaDemo.NetStandard] DiplomaDemo.NetStandard." + className + ":" + methodName, args);
+
+    function AfterMonoInit() {
+        document.getElementById("loadingMono").style.display = "none";
+        document.getElementById("loadingMonContent").style.display = "";
+
+        addClickEventListener("btn_SayHello", (e) => {
+            const result = callStaticMethodWasmSample("TestClass", "SayHello");
+            setElementInnerText("span_SayHello", "WASM /"+result);
+        });
+
+        addClickEventListener("btn_Parse", (e) => {
+            const input = getElementValue("input_Parse");
+            const result = callStaticMethodWasmSample("TestClass", "Parse", [input]);
+            setElementInnerText("span_ParseResult", result);
+        });
+
+        addClickEventListener("btn_Multiply", (e) => {
+            const a = getElementValue("input_MultiplyA");
+            const b = getElementValue("input_MultiplyB");
+            const result = callStaticMethodWasmSample("TestClass", "Multiply", [Number(a), Number(b)]);
+            setElementInnerText("span_MultiplyResult", result);
+        });
+    };
+</dot:InlineScript>
+</html>

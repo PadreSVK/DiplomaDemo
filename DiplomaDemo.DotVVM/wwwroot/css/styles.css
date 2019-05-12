@@ -1,0 +1,83 @@
+html, body {
+	font-family: Trebuchet MS;
+	height: 100%;
+	margin: 0;
+}
+
+h1 {
+	display: inline-block;
+	margin: 0;
+	font-size: 50px;
+}
+
+h2 {
+	display: inline-block;
+	margin: 0;
+	font-size: 25px;
+}
+
+.page-body {
+	display: block;
+	position: relative;
+	width: 100%;
+}
+
+.input-text-only {
+	font-size: 14px;
+	padding: 3px 0;
+	margin: 0 0 15px 0;
+	border-bottom: 2px solid transparent;
+	color: black;
+    font-weight: normal;
+    height: 20px;
+}
+
+.page-button {
+	text-decoration: none;
+	border: 1px solid #3176bb;
+	background: #3176bb;
+	color: white;
+	padding: 10px 5px;
+	min-width: 120px;
+	text-align: center;
+	font-size: 12px;
+	text-transform: uppercase;
+	font-weight: bold;
+	letter-spacing: 0.6px;
+    cursor: pointer;
+}
+
+	.page-button:hover {
+		background-color: #004890;
+		color: white;
+		text-decoration: none;
+	}
+
+	.page-button.btn-back {
+		display: block;
+		width: 70px;
+	}
+
+		.page-button.btn-back:before {
+			content: "<";
+			font-size: 17px;
+			padding-right: 10px;
+		}
+
+	.page-button.btn-long {
+		width: 135px;
+		text-align: center;
+	}
+
+	.page-button.btn-add {
+		display: block;
+	}
+    
+.logo-img{
+    width: 70vh; 
+    display:block
+}
+
+.span-important{
+    font-weight: bold
+}

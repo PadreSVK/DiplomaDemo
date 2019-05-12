@@ -1,0 +1,1 @@
+pwsh -command ".\build.ps1"
