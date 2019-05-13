@@ -1,5 +1,4 @@
-$emsdkRoot = "/mnt/c/Users/patri/Documents/PersonalProjects/Diploma/_ubuntu/_sdk/emsdk"
-
+$buildConfig = cat $("$PSScriptRoot/buildConfig.json") | Out-String | ConvertFrom-Json
 function buildWithMono([string]$csprojDir,[String]$emsdkRoot){
     if(-not $IsLinux){
        Write-Host "OS for build must be linux" -ForegroundColor Red
@@ -12,13 +11,15 @@ function buildWithMono([string]$csprojDir,[String]$emsdkRoot){
        return
     }
     Write-Host "Loading EMSDK env variables - is required for AOT build"
+    Write-Host $emsdkRoot
     & $("$emsdkRoot/emsdk_env.ps1")
     pushd $csprojDir
-    Remove-Item "$csprojDir\obj" -Force -Recurse
+    if((Test-Path -Path "$csprojDir\obj" )){
+        Remove-Item "$csprojDir\obj" -Force -Recurse
+    } 
     $start = $([System.DateTime]::UtcNow)
     Write-Host "build start $start"
-    msbuild DiplomaDemo.WasmAOT.csproj /r #/p:Configuration=Release
-    # msbuild /r /p:Configuration=Release
+    msbuild DiplomaDemo.WasmAOT.csproj /r /p:Configuration=Release
     Write-Host "build start $start"
     $seconds = $( $([System.DateTime]::UtcNow)-$start).Seconds
     Write-Host "build took $seconds s"
@@ -26,4 +27,4 @@ function buildWithMono([string]$csprojDir,[String]$emsdkRoot){
     popd
 }
 
-buildWithMono -csprojDir $PSScriptRoot -emsdkRoot $emsdkRoot
+buildWithMono -csprojDir $PSScriptRoot -emsdkRoot $buildConfig.emsdkPath
