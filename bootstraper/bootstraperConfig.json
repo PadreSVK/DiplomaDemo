@@ -1,5 +1,5 @@
 {
-    "distPath":"C:\\Users\\patri\\Documents\\PersonalProjects\\Diploma\\_thesis_Attachments\\DiplomaDemo\\tmp\\bin\\Debug\\netstandard2.0\\dist",
-    "brPath": "C:\\Users\\patri\\Documents\\PersonalProjects\\Diploma\\_thesis_Attachments\\DiplomaDemo\\tmp\\bin\\Debug\\netstandard2.0\\dist\\_compressed_br",
-    "gzPath": "C:\\Users\\patri\\Documents\\PersonalProjects\\Diploma\\_thesis_Attachments\\DiplomaDemo\\tmp\\bin\\Debug\\netstandard2.0\\dist\\_compressed_gz"
+    "distPath":"C:\\Users\\patri\\Documents\\PersonalProjects\\Diploma\\_thesis_Attachments\\DiplomaDemo\\tmp\\bin\\Release\\netstandard2.0\\dist",
+    "brPath": "C:\\Users\\patri\\Documents\\PersonalProjects\\Diploma\\_thesis_Attachments\\DiplomaDemo\\tmp\\bin\\Release\\netstandard2.0\\dist\\_compressed_br",
+    "gzPath": "C:\\Users\\patri\\Documents\\PersonalProjects\\Diploma\\_thesis_Attachments\\DiplomaDemo\\tmp\\bin\\Release\\netstandard2.0\\dist\\_compressed_gz"
 }
