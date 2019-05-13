@@ -10,14 +10,10 @@
 
 </head>
 <body Validation.Enabled="false" class="page-body">
-    <img src="img/UTKO_color_RGB_EN.png" alt="FEKT logo" class="logo-img">
-
     <h1>DotVVM & Mono (WASM) demo</h1>
-    <br>
-     <span class="span-important">PostBack counter {{value: PostBackCounter}}</span>
-    <div>
-        <h2>DotVVM</h2>
+    <div class="flex-row">
         <div>
+            <img src="img/logo-dotvvm.svg" class="logo-img">
             <div>
                 <dot:Button Click="{command: SayHello()}" Text="Say Hello" class="page-button" />
                 <span InnerText="{value: SayHelloText}" />
@@ -33,35 +29,39 @@
                 *
                 <dot:TextBox Text="{value: MultiplyInputB}" Type="Number" class="input-text-only" />
                 =
-                <span InnerText="{value: MultiplyResult}" class="input-text-only" />
+                <b><span InnerText="{value: MultiplyResult}"/></b>
+            </div>
+        </div>
+        <div>
+            <img src="img/Mono_project_logo.svg" class="logo-img">
+            <div id="loadingMono">
+                <span InnerText="Initializing Mono runtime..." />
+            </div>
+            <div id="loadingMonContent" style="display:none;">
+                <div>
+                    <dot:Button id="btn_SayHello" Text="Say Hello" class="page-button" />
+                    <span id="span_SayHello" />
+                </div>
+                <div>
+                    <dot:Button id="btn_Parse" Text="Parse" class="page-button" />
+                    <input id="input_Parse" class="input-text-only" /> =>
+                    <span id="span_ParseResult" />
+                </div>
+                <div>
+                    <dot:Button id="btn_Multiply" Text="Multiply" class="page-button" />
+                    <input id="input_MultiplyA" class="input-text-only" type="number" />
+                    *
+                    <input id="input_MultiplyB" class="input-text-only" type="number" />
+                    =
+                    <b><span id="span_MultiplyResult"/></b>
+                </div>
             </div>
         </div>
     </div>
-    <div>
-        <h2>C# and Mono (WASM)</h2>
-        <div id="loadingMono">
-            <span InnerText="Initializing Mono runtime..." />
-        </div>
-        <div id="loadingMonContent" style="display:none;">
-            <div>
-                <dot:Button id="btn_SayHello" Text="Say Hello" class="page-button" />
-                <span id="span_SayHello" />
-            </div>
-            <div>
-                <dot:Button id="btn_Parse" Text="Parse" class="page-button" />
-                <input id="input_Parse" class="input-text-only" /> =>
-                <span id="span_ParseResult" />
-            </div>
-            <div>
-                <dot:Button id="btn_Multiply" Text="Multiply" class="page-button" />
-                <input id="input_MultiplyA" class="input-text-only" type="number" />
-                *
-                <input id="input_MultiplyB" class="input-text-only" type="number" />
-                =
-                <span id="span_MultiplyResult" class="input-text-only" />
-            </div>
-        </div>
+    <div class="postback-box">
+        <span class="postback-counter">PostBack counter: <b>{{value: PostBackCounter}}</b></span>
     </div>
+    <img src="img/UTKO_color_RGB_EN.png" alt="FEKT logo" class="logo-school">
 </body>
 <dot:InlineScript>
     const getElementValue = (id) => document.getElementById(id).value;
