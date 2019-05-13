@@ -67,7 +67,7 @@ function bootstrap([string]$out, [string]$distPath,[string]$compressed){
         $compressed = $distPath
     }
     # copy required files
-    ('mono.js', 'mono.wasm','require.js','runtime.js','mono.wasm') | %{cpi -Path "$compressed\$_" -Destination $out }
+    ('mono.js', 'mono.wasm','require.js','mono.wasm') | %{cpi -Path "$compressed\$_" -Destination $out }
 
     $config = cat "$tmp\config.json" | Out-String | ConvertFrom-Json 
     log "copy items from  $compressed\$($config.uno_remote_managedpath)"
