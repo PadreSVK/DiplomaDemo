@@ -16,18 +16,18 @@
             <img src="img/logo-dotvvm.svg" class="logo-img">
             <div>
                 <dot:Button Click="{command: SayHello()}" Text="Say Hello" class="page-button" />
-                <span InnerText="{value: SayHelloText}" />
+                <span InnerText="{value: SayHelloText}"  />
             </div>
             <div>
                 <dot:Button Click="{command: Parse(ParseTextInput)}" Text="Parse" class="page-button" />
-                <dot:TextBox Text="{value: ParseTextInput}" class="input-text-only" /> =>
+                <dot:TextBox Text="{value: ParseTextInput}" placeholder="type number" class="input-text-only" /> =>
                 <span InnerText="{value: ParseResult}" />
             </div>
             <div>
                 <dot:Button Click="{command: Multiply(MultiplyInputA,MultiplyInputB)}" Text="Multiply" class="page-button" />
-                <dot:TextBox Text="{value: MultiplyInputA}" Type="Number" class="input-text-only" />
+                <dot:TextBox Text="{value: MultiplyInputA}" Type="Number" placeholder="type number" class="input-text-only" />
                 *
-                <dot:TextBox Text="{value: MultiplyInputB}" Type="Number" class="input-text-only" />
+                <dot:TextBox Text="{value: MultiplyInputB}" Type="Number" placeholder="type number" class="input-text-only" />
                 =
                 <b><span InnerText="{value: MultiplyResult}"/></b>
             </div>
@@ -44,14 +44,14 @@
                 </div>
                 <div>
                     <dot:Button id="btn_Parse" Text="Parse" class="page-button" />
-                    <input id="input_Parse" class="input-text-only" /> =>
+                    <input id="input_Parse" class="input-text-only" placeholder="type number"/> =>
                     <span id="span_ParseResult" />
                 </div>
                 <div>
                     <dot:Button id="btn_Multiply" Text="Multiply" class="page-button" />
-                    <input id="input_MultiplyA" class="input-text-only" type="number" />
+                    <input id="input_MultiplyA" class="input-text-only" placeholder="type number" type="number" />
                     *
-                    <input id="input_MultiplyB" class="input-text-only" type="number" />
+                    <input id="input_MultiplyB" class="input-text-only" placeholder="type number" type="number" />
                     =
                     <b><span id="span_MultiplyResult"/></b>
                 </div>
